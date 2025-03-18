@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Verified Voting System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Voting System</h1>
+        
+        <!-- Age Verification Section -->
+        <div class="age-form">
+            <h2>Age Verification</h2>
+            <p>Please enter your age to verify eligibility:</p>
+            <input type="number" id="ageInput" placeholder="Enter your age" min="1" max="120">
+            <button class="btn" onclick="verifyAge()">Verify Age</button>
+            <div id="ageError" class="error hidden">You must be at least 18 years old to vote</div>
+        </div>
+
+        <!-- Voting Section -->
+        <div id="votingSection" class="voting-section hidden">
+            <h2>Candidates</h2>
+            
+            <div class="candidate-card">
+                <div class="party-badge party-a">Party A</div>
+                <h3>Candidate 1</h3>
+                <p>Progressive policies for a better future</p>
+                <button class="btn" onclick="castVote('candidate1')">Vote</button>
+            </div>
+
+            <div class="candidate-card">
+                <div class="party-badge party-b">Party B</div>
+                <h3>Candidate 2</h3>
+                <p>Experience and stability in governance</p>
+                <button class="btn" onclick="castVote('candidate2')">Vote</button>
+            </div>
+        </div>
+
+        <div id="confirmation" class="success-message hidden">
+            Thank you for voting! Your vote has been recorded.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

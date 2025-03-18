@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.game {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.score-box {
+    text-align: center;
+}
+
+.score-label {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.score-value {
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.moves-left {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.option {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #2a5298, #1e3c72);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 3px solid transparent;
+}
+
+.option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.option img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.move {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+.result {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.win {
+    background: rgba(76, 175, 80, 0.2);
+    color: #7fff7f;
+}
+
+.lose {
+    background: rgba(244, 67, 54, 0.2);
+    color: #ff7f7f;
+}
+
+.draw {
+    background: rgba(255, 152, 0, 0.2);
+    color: #ffcc7f;
+}
+
+.reset-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+.choice-display {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin: 20px 0;
+}
+
+.choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.choice-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.choice-img {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.choice-img img {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+}
+
+button.rock{
+    border-radius: 10px;
+    border-color: 2px blue;
+    width:70px;
+    height:25px;
+    background-color: #ff7f7f;
+}
+
+button.paper{
+    border-radius:10px;
+    border-color: 2px blue;
+    width:70px;
+    height:25px;
+    background-color: #ff7f7f;
+}
+
+button.scissor{
+    border-radius: 10px;
+    border-color: 2px blue;
+    width:70px;
+    height:25px;
+    background-color: #ff7f7f;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .score {
+        gap: 50px;
+    }
+    
+    .options {
+        gap: 10px;
+    }
+    
+    .option {
+        width: 100px;
+        height: 100px;
+    }
+}

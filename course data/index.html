@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Registration System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <div class="container">
+       <header>
+         <h1>Course Registration System</h1>
+      </header>
+
+      <div class="form-container">
+        <div class="success-message" id="successMessage">
+          Registration successful! Data has been added to the table.
+     </div>
+
+    <form id="courseForm">
+      <div class="form-row">
+        <div class="form-group">
+      <label for="studentId">Student ID*</label>
+         <input type="text" id="studentId" name="studentId" placeholder="Enter student ID">
+      <div class="error" id="studentIdError"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="fullName">Full Name*</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Enter full name">
+    <div class="error" id="fullNameError"></div>
+  </div>
+  </div>
+
+<div class="form-row">
+ <div class="form-group">
+  <label for="email">Email Address*</label>
+  <input type="email" id="email" name="email" placeholder="Enter email address">
+  <div class="error" id="emailError"></div>
+</div>
+
+<div class="form-group">
+  <label for="phone">Phone Number*</label>
+  <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+  <div class="error" id="phoneError"></div>
+</div>
+</div>
+
+<div class="form-row">
+  <div class="form-group">
+   <label for="courseId">Course ID*</label>
+   <input type="text" id="courseId" name="courseId" placeholder="Enter course ID"> 
+  <div class="error" id="courseIdError"></div>
+</div>
+
+<div class="form-group">
+    <label for="courseName">Course Name*</label>
+    <input type="text" id="courseName" name="courseName" placeholder="Enter course name">
+    <div class="error" id="courseNameError"></div>
+  </div>
+</div>
+
+<div class="form-group"> 
+  <label for="department">Department*</label>
+  <select id="department" name="department">
+  <option value="">Select Department</option>
+  <option value="Computer Science">Computer Science</option>
+  <option value="Engineering">Engineering</option>
+  <option value="Business">Business</option>
+  <option value="Arts">Arts</option>
+  <option value="Science">Science</option>
+  <option value="Fashion Designing">Fashion Designing</option>
+  <option value="ITI">ITI</option>
+  <option value="Polytechnic">Polytechnic</option>
+
+</select>
+  <div class="error" id="departmentError"></div>
+</div>
+
+  <div class="form-row">
+    <div class="form-group">
+     <label for="semester">Semester*</label>
+     <select id="semester" name="semester">
+     <option value="">Select Semester</option>
+     <option value="Fall 2024">Fall 2024</option>
+     <option value="Spring 2025">Spring 2025</option>
+     <option value="Summer 2025">Summer 2025</option>
+  </select>
+     <div class="error" id="semesterError"></div>
+</div>
+
+   <div class="form-group">
+     <label for="credits">Credits*</label>
+     <select id="credits" name="credits">
+     <option value="">Select Credits</option>
+     <option value="1">1</option>
+     <option value="2">2</option>
+     <option value="3">3</option>
+     <option value="4">4</option>
+     <option value="5">5</option>
+  </select>
+   <div class="error" id="creditsError"></div>
+  </div>
+</div>
+
+  <div class="form-group">
+   <label for="notes">Additional Notes</label>
+   <textarea id="notes" name="notes" rows="3" placeholder="Any special requests or additional information"></textarea>
+ </div>
+
+  <div class="buttons">
+    <button type="submit" class="btn" id="submitBtn">Register Course</button>
+    <button type="button" class="btn btn-reset" id="resetBtn">Reset Form</button>
+  </div>
+  </form>
+</div>
+
+  <div class="table-container">
+    <h2>Registered Courses</h2>
+   <table id="coursesTable">
+    <thead>
+     <tr>
+      <th>Student ID</th>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Course ID</th>
+      <th>Course Name</th>
+      <th>Department</th>
+      <th>Semester</th>
+      <th>Credits</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+   <tbody id="tableBody">
+  <tr>
+    <td colspan="10" class="no-data">No registrations yet. Fill out the form to register.</td>
+  </tr>
+   </tbody>
+  </table>
+   </div>
+ </div>
+
+<script src="script.js"></script></body>
+
+</body>
+</html>

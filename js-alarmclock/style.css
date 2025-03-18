@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: lightgrey;
+  
+  }
+  
+  .container {
+    width:500px;
+    height:250px;
+    text-align: center;
+    background-color: lightcyan;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    border: 2px solid rebeccapurple; 
+    
+  }
+  
+  #current-time {
+    font-size: 2em;
+    margin: 20px ;
+    background-color: lightpink;
+    width:130px;
+    margin-left: 36%;
+    margin-bottom: 40px;
+    border-radius: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 8px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #set-alarm {
+    background-color: #28a745;
+    color: white;
+  }
+
+  #set-alarm:hover{
+     background-color: bisque;
+     transition-duration: 1s;
+  }
+  
+  #stop-alarm {
+    background-color: #dc3545;
+    color: white;
+    margin: 8px;
+  }
+
+  #stop-alarm:hover{
+    background-color: beige;
+    transition-duration: 1s;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  h2{
+    color:darkmagenta;
+    margin-bottom: 10%;
+    text-transform: uppercase;
+    font-style: inherit;
+  }
+
+  input,alarm-time{
+     background-color: lightyellow;
+     border-radius: 4px;
+  }
+
+  label,p{
+      color: red;
+      font-size: medium;
+  }

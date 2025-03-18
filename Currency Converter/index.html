@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Currency Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="converter">
+        <h1>Currency Converter</h1>
+        <div class="input-group">
+            <input type="number" id="amount" placeholder="Amount" value="1">
+            <select id="fromCurrency">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+            <span>to</span>
+            <select id="toCurrency">
+                <!-- Options will be populated by JavaScript -->
+            </select>
+        </div>
+        <button id="convertBtn">Convert</button>
+        <div class="result">
+            <h2 id="resultText">Result will appear here</h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

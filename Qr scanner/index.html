@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, 
+                         initial-scale=1.0" />
+    <title>QR Code Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+     
+    <div class="mainbox">
+        
+        <header>
+        <h3>QR code generator</h3>
+        <h2>Enter QR code content and generate QR</h2>
+       </header>
+        
+     <div class="input">
+        <form action="/" 
+              id="qr-generation-form">
+            <input type="text"
+                   name="qr-code-content"
+                   id="qr-content" 
+                   value=""
+                   placeholder="Enter QR content"
+                   autocomplete="off" />
+          
+           <input type="file"
+                   id="file-input"
+                   accept=".pdf,.png,.jpg,.jpeg,.doc,.docx" />
+
+            <input type="submit" 
+                   value="Generate QR Code" />
+        </form><br />
+        <div id="qr-code"></div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+</body>
+</html>

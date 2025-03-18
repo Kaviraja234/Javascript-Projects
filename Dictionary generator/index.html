@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dictionary Generator</h1>
+        
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="Enter a word...">
+            <button id="search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="error-message" id="error-message"></div>
+
+        <div class="result-container" id="result-container">
+            <div class="word-details">
+                <h2 id="word"></h2>
+                <p id="phonetic"></p>
+                <button id="pronunciation-btn" class="pronunciation-btn">
+                    <i class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <div class="word-meanings" id="word-meanings">
+                <!-- Meanings will be populated here by JavaScript -->
+            </div>
+
+            <div class="synonyms-container" id="synonyms-container">
+                <h3>Synonyms:</h3>
+                <div class="synonyms-list" id="synonyms-list">
+                    <!-- Synonyms will be populated here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="source-container" id="source-container">
+                <h3>Source:</h3>
+                <a id="source-link" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+        </div>
+
+        <div class="history-container">
+            <h3>Search History</h3>
+            <ul id="history-list"></ul>
+            <button id="clear-history" class="clear-history-btn">Clear History</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

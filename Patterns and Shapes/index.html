@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Pattern Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <h1>Number Pattern Generator</h1>
+  <div class="container">
+    <!-- Right Angled Triangle -->
+    <div class="pattern">
+      <h2>Right Angled Triangle</h2>
+      <input type="number" id="rightAngleInput" placeholder="Enter rows" min="1">
+      <button onclick="generateRightAngledTriangle()">Generate</button>
+      <pre id="rightAngleOutput"></pre>
+    </div>
+
+    <!-- Inverted Right Angled Triangle -->
+    <div class="pattern">
+      <h2>Inverted Right Angled Triangle</h2>
+      <input type="number" id="invertedRightAngleInput" placeholder="Enter rows" min="1">
+      <button onclick="generateInvertedRightAngledTriangle()">Generate</button>
+      <pre id="invertedRightAngleOutput"></pre>
+    </div>
+
+    <!-- Pyramid Triangle -->
+    <div class="pattern">
+      <h2>Pyramid Triangle</h2>
+      <input type="number" id="pyramidInput" placeholder="Enter rows" min="1">
+      <button onclick="generatePyramidTriangle()">Generate</button>
+      <pre id="pyramidOutput"></pre>
+    </div>
+
+    <!-- Diamond Triangle -->
+    <div class="pattern">
+      <h2>Diamond Triangle</h2>
+      <input type="number" id="diamondInput" placeholder="Enter rows" min="1">
+      <button onclick="generateDiamondTriangle()">Generate</button>
+      <pre id="diamondOutput"></pre>
+    </div>
+
+    <!-- Pascal's Triangle -->
+    <div class="pattern">
+      <h2>Pascal's Triangle</h2>
+      <input type="number" id="pascalInput" placeholder="Enter rows" min="1">
+      <button onclick="generatePascalsTriangle()">Generate</button>
+      <pre id="pascalOutput"></pre>
+    </div>
+
+    <!-- Floyd's Triangle -->
+    <div class="pattern">
+      <h2>Floyd's Triangle</h2>
+      <input type="number" id="floydInput" placeholder="Enter rows" min="1">
+      <button onclick="generateFloydsTriangle()">Generate</button>
+      <pre id="floydOutput"></pre>
+    </div>
+
+    <!-- Equilateral Triangle -->
+    <div class="pattern">
+      <h2>Equilateral Triangle</h2>
+      <input type="number" id="equilateralInput" placeholder="Enter rows" min="1">
+      <button onclick="generateEquilateralTriangle()">Generate</button>
+      <pre id="equilateralOutput"></pre>
+    </div>
+  </div>
+ 
+    <script src="script.js"></script>
+    
+</body>
+</html>

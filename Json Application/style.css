@@ -1,0 +1,173 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    background-color: wheat;/* Light background */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: antiquewhite;
+    border: 2px solid darkblue;
+    border-radius: 10px;
+    width: 600px;
+    margin-left: 320px;
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #4a4e69; 
+    background-color: aliceblue;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid darkorange;
+    border-radius: 30px
+ }
+
+/* Controls Section */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #c9ada7; /* Soft peach */
+    border-radius: 8px;
+    width: 250px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #9a8c98; /* Slightly darker peach */
+    outline: none;
+}
+
+select {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #c9ada7;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #9a8c98;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-weight: 600;
+}
+
+#searchButton {
+    background-color: #2a9d8f; /* Teal green */
+    color: white;
+}
+
+#searchButton:hover {
+    background-color: #228b7c; /* Darker teal */
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#resetButton {
+    background-color: #e76f51; /* Coral red */
+    color: white;
+}
+
+#resetButton:hover {
+    background-color: #d65a31; /* Darker coral */
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Book List Styling */
+#bookList {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.book {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.book-title {
+    font-size: 1.5rem;
+    color: #2a9d8f; /* Teal green */
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.book-author {
+    font-style: italic;
+    color: #9a8c98; /* Soft gray */
+    margin-bottom: 10px;
+}
+
+.book-details {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #4a4e69; /* Deep purple */
+}
+
+.book-description {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* No Results Message */
+.no-results {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #e76f51; /* Coral red */
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input[type="text"], select, button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

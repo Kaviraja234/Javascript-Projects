@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Attendance System</h1>
+        
+        <div class="date-display" id="current-date">
+            Today's Date: <span id="date-value"></span>
+        </div>
+        
+        <div class="student-form">
+            <h3>Add New Student</h3>
+            <input type="text" id="student-id" placeholder="Student ID">
+            <input type="text" id="student-name" placeholder="Student Name">
+            <button onclick="addNewStudent()">Add Student</button>
+        </div>
+        
+        <div>
+            <h3>Attendance Sheet</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-list">
+                    <!-- Attendance records will be populated here -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="stats">
+            <h3>Attendance Statistics</h3>
+            <div class="summary">
+                <div class="summary-item">
+                    <h4>Total Students</h4>
+                    <p id="total-students">0</p>
+                </div>
+                <div class="summary-item">
+                    <h4>Present</h4>
+                    <p id="present-count">0</p>
+                </div>
+                <div class="summary-item">
+                    <h4>Absent</h4>
+                    <p id="absent-count">0</p>
+                </div>
+                <div class="summary-item">
+                    <h4>Attendance Rate</h4>
+                    <p id="attendance-rate">0%</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="export-btn" onclick="exportData()">Export Attendance Data</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

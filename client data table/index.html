@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT College - Student Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>IT College - Course Registry</h1>
+    
+    <div class="container">
+        <div id="notification" class="notification"></div>
+        
+        <div class="form-container">
+            <h2>Register New Student</h2>
+            <form id="studentForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialization">IT Specialization</label>
+                    <select id="specialization" required>
+                        <option value="">-- Select Specialization --</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Cybersecurity">Cybersecurity</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Network Engineering">Network Engineering</option>
+                        <option value="IT Management">IT Management</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="portfolio">Project Repository</label>
+                    <input type="url" id="portfolio" placeholder="https://github.com/your-profile">
+                </div>
+                
+                <div class="form-group">
+                    <label for="year">Academic Level</label>
+                    <select id="year" required>
+                        <option value="1st Year">6 Month</option>
+                        <option value="2nd Year">One Year</option>
+                        <option value="3rd Year">2nd Year</option>
+                        <option value="4th Year">3rd Year</option>
+                        <option value="Graduate">Intership</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="enrollment">Enrollment Status</label>
+                    <select id="enrollment" required>
+                        <option value="Active">Active</option>
+                        <option value="On Leave">On Leave</option>
+                        <option value="Graduated">Certification</option>
+                    </select>
+                </div>
+                
+                <button type="submit" id="submitBtn">Register Student</button>
+            </form>
+        </div>
+        
+        <div class="tables-container">
+            <div class="table-section">
+                <h2>Active Students</h2>
+                <input type="text" id="activeSearch" placeholder="Search active students..." class="search-box">
+                <table id="activeTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Academic Level</th>
+                            <th>Projects</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Active students will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-section">
+                <h2>Alumni & On Leave</h2>
+                <input type="text" id="inactiveSearch" placeholder="Search alumni & on leave..." class="search-box">
+                <table id="inactiveTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Academic Level</th>
+                            <th>Projects</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Inactive students will be displayed here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

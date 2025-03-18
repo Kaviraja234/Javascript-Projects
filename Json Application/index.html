@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Application to Display Book Title on JSON</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="coantiner">
+    <h1>JS Application to Display Book Title on JSON</h1>
+    
+    <!-- Search and Filter Controls -->
+    <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by title or author">
+        <select id="genreFilter">
+            <option value="">All Genres</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Dystopian">Dystopian</option>
+            <option value="Classic">Classic</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select>
+        <button id="searchButton">Search</button>
+        <button id="resetButton">Reset</button>
+    </div>
+    
+    <!-- Book List Container -->
+    <div id="bookList"></div>
+
+   </div>
+
+    <!-- JavaScript File -->
+    <script src="app.js"></script>
+    </body>
+</html>

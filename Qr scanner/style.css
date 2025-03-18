@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 70vh;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.mainbox {
+  background: linen;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h3 {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+header h2 {
+  color: #764ba2;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#qr-generation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#qr-content {
+  padding: 12px 15px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#qr-content:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+#file-input {
+  padding: 10px;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+  background: lightyellow;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#file-input:hover {
+  border-color: #764ba2;
+  background: #f0f0f0;
+}
+
+input[type="submit"] {
+  background: #667eea;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width:200px;
+  margin-left: 110px;
+  margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+  background: #764ba2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+}
+
+#qr-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  background: lavenderblush;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+img{
+  width: 150px;
+  Height: 150px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .mainbox {
+      padding: 20px;
+      margin: 10px;
+  }
+
+  header h2 {
+      font-size: 1.5rem;
+  }
+
+  header h3 {
+      font-size: 1.2rem;
+  }
+}
