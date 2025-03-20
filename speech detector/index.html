@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Detector</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .description {
+            max-width: 600px;
+            text-align: center;
+            margin: 0 auto 20px;
+            color: #7f8c8d;
+        }
+        
+        main {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        button.stop {
+            background-color: #e74c3c;
+        }
+        
+        button.stop:hover {
+            background-color: #c0392b;
+        }
+        
+        button.reset {
+            background-color: #7f8c8d;
+        }
+        
+        button.reset:hover {
+            background-color: #6c7a7d;
+        }
+        
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            min-height: 28px;
+            color: #34495e;
+        }
+        
+        .status.listening {
+            color: #27ae60;
+        }
+        
+        .status.error {
+            color: #e74c3c;
+        }
+        
+        .visualization {
+            height: 100px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .bars-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            gap: 5px;
+            padding: 0 20px;
+        }
+        
+        .bar {
+            background-color: #3498db;
+            width: 10px;
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+        
+        .transcript-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .transcript-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        
+        .transcript-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .transcript-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .transcript-actions button {
+            background-color: transparent;
+            color: #3498db;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+        
+        .transcript-actions button:hover {
+            background-color: #ecf0f1;
+            transform: none;
+        }
+        
+        #transcript {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #34495e;
+            white-space: pre-wrap;
+            min-height: 100px;
+        }
+        
+        .interim {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .settings {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .settings-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .setting-label {
+            font-weight: 500;
+        }
+        
+        select, input {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            font-size: 1rem;
+            width: 200px;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .pulse {
+            width: 20px;
+            height: 20px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            position: relative;
+            margin-right: 5px;
+        }
+        
+        .pulse::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .setting-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            select, input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Speech Detector</h1>
+        <p class="description">A tool to detect and transcribe speech in real-time using your browser's Web Speech API.</p>
+    </header>
+    
+    <main>
+        <div class="controls">
+            <button id="startBtn">
+                <span class="pulse hidden"></span>
+                Start Listening
+            </button>
+            <button id="stopBtn" class="stop" disabled>Stop Listening</button>
+            <button id="resetBtn" class="reset" disabled>Reset</button>
+        </div>
+        
+        <div id="status" class="status">Ready to detect speech</div>
+        
+        <div class="visualization">
+            <div class="bars-container" id="barsContainer"></div>
+        </div>
+        
+        <div class="transcript-container">
+            <div class="transcript-header">
+                <div class="transcript-title">Transcript</div>
+                <div class="transcript-actions">
+                    <button id="copyBtn" disabled>Copy</button>
+                    <button id="downloadBtn" disabled>Download</button>
+                </div>
+            </div>
+            <div id="transcript"></div>
+        </div>
+        
+        <div class="settings">
+            <div class="settings-header">Settings</div>
+            <div class="settings-group">
+                <div class="setting-item">
+                    <label class="setting-label" for="languageSelect">Language</label>
+                    <select id="languageSelect">
+                        <option value="en-US">English (US)</option>
+                        <option value="en-GB">English (UK)</option>
+                        <option value="es-ES">Spanish</option>
+                        <option value="fr-FR">French</option>
+                        <option value="de-DE">German</option>
+                        <option value="it-IT">Italian</option>
+                        <option value="ja-JP">Japanese</option>
+                        <option value="ko-KR">Korean</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="ru-RU">Russian</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label class="setting-label" for="confidenceThreshold">Confidence Threshold</label>
+                    <input type="range" id="confidenceThreshold" min="0" max="1" step="0.1" value="0.5">
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>Speech detection powered by Web Speech API. Results may vary based on browser and language support.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const statusElement = document.getElementById('status');
+            const transcriptElement = document.getElementById('transcript');
+            const barsContainer = document.getElementById('barsContainer');
+            const languageSelect = document.getElementById('languageSelect');
+            const confidenceThreshold = document.getElementById('confidenceThreshold');
+            const pulseIndicator = document.querySelector('.pulse');
+            
+            // Variables
+            let recognition = null;
+            let isListening = false;
+            let finalTranscript = '';
+            let interimTranscript = '';
+            let bars = [];
+            const barCount = 30;
+            
+            // Check if speech recognition is supported
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                statusElement.textContent = 'Speech recognition is not supported in your browser';
+                statusElement.classList.add('error');
+                startBtn.disabled = true;
+                return;
+            }
+            
+            // Create speech recognition instance
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            // Initialize audio visualization
+            initializeVisualization();
+            
+            // Start speech recognition
+            function startSpeechRecognition() {
+                recognition = new SpeechRecognition();
+                recognition.continuous = true;
+                recognition.interimResults = true;
+                recognition.lang = languageSelect.value;
+                
+                recognition.onstart = () => {
+                    isListening = true;
+                    statusElement.textContent = 'Listening...';
+                    statusElement.classList.add('listening');
+                    pulseIndicator.classList.remove('hidden');
+                    startBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    resetBtn.disabled = false;
+                    animateBars(true);
+                };
+                
+                recognition.onresult = (event) => {
+                    interimTranscript = '';
+                    
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        const transcript = event.results[i][0].transcript;
+                        const confidence = event.results[i][0].confidence;
+                        
+                        if (confidence >= confidenceThreshold.value) {
+                            if (event.results[i].isFinal) {
+                                finalTranscript += transcript + ' ';
+                                copyBtn.disabled = false;
+                                downloadBtn.disabled = false;
+                            } else {
+                                interimTranscript += transcript;
+                            }
+                        }
+                    }
+                    
+                    updateTranscript();
+                };
+                
+                recognition.onerror = (event) => {
+                    statusElement.textContent = `Error: ${event.error}`;
+                    statusElement.classList.remove('listening');
+                    statusElement.classList.add('error');
+                };
+                
+                recognition.onend = () => {
+                    isListening = false;
+                    statusElement.textContent = 'Speech detection stopped';
+                    statusElement.classList.remove('listening');
+                    pulseIndicator.classList.add('hidden');
+                    startBtn.disabled = false;
+                    stopBtn.disabled = true;
+                    animateBars(false);
+                };
+                
+                recognition.start();
+            }
+            
+            // Stop speech recognition
+            function stopSpeechRecognition() {
+                if (recognition) {
+                    recognition.stop();
+                }
+            }
+            
+            // Reset everything
+            function resetSpeechRecognition() {
+                finalTranscript = '';
+                interimTranscript = '';
+                updateTranscript();
+                copyBtn.disabled = true;
+                downloadBtn.disabled = true;
+                resetBtn.disabled = true;
+                if (isListening) {
+                    stopSpeechRecognition();
+                }
+                statusElement.textContent = 'Ready to detect speech';
+                statusElement.classList.remove('listening', 'error');
+            }
+            
+            // Update the transcript display
+            function updateTranscript() {
+                transcriptElement.innerHTML = finalTranscript;
+                
+                if (interimTranscript) {
+                    transcriptElement.innerHTML += `<span class="interim">${interimTranscript}</span>`;
+                }
+                
+                // Auto-scroll to bottom
+                transcriptElement.scrollTop = transcriptElement.scrollHeight;
+            }
+            
+            // Initialize visualization bars
+            function initializeVisualization() {
+                barsContainer.innerHTML = '';
+                bars = [];
+                
+                for (let i = 0; i < barCount; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = '5px';
+                    barsContainer.appendChild(bar);
+                    bars.push(bar);
+                }
+            }
+            
+            // Animate the visualization bars
+            function animateBars(active) {
+                if (!active) {
+                    bars.forEach(bar => {
+                        bar.style.height = '5px';
+                    });
+                    return;
+                }
+                
+                const animate = () => {
+                    bars.forEach(bar => {
+                        const height = active ? Math.floor(Math.random() * 50) + 5 : 5;
+                        bar.style.height = `${height}px`;
+                    });
+                    
+                    if (isListening) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+                
+                animate();
+            }
+            
+            // Copy transcript to clipboard
+            function copyTranscript() {
+                navigator.clipboard.writeText(finalTranscript.trim())
+                    .then(() => {
+                        const originalText = copyBtn.textContent;
+                        copyBtn.textContent = 'Copied!';
+                        setTimeout(() => {
+                            copyBtn.textContent = originalText;
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        alert('Failed to copy transcript');
+                    });
+            }
+            
+            // Download transcript as text file
+            function downloadTranscript() {
+                const text = finalTranscript.trim();
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                
+                a.href = url;
+                a.download = 'speech-transcript.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+            
+            // Event listeners
+            startBtn.addEventListener('click', startSpeechRecognition);
+            stopBtn.addEventListener('click', stopSpeechRecognition);
+            resetBtn.addEventListener('click', resetSpeechRecognition);
+            copyBtn.addEventListener('click', copyTranscript);
+            downloadBtn.addEventListener('click', downloadTranscript);
+            
+            // Language change
+            languageSelect.addEventListener('change', () => {
+                if (isListening) {
+                    stopSpeechRecognition();
+                    startSpeechRecognition();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
