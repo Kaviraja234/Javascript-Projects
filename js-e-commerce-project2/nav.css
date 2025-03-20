@@ -1,0 +1,33 @@
+.navbar{
+    height: 60px;
+    background-color: lightblue;
+    border-radius: 10px;
+}    
+    /* If your nav bar is a flex container */
+.navbar button {
+margin-right: auto; /* Pushes button to left in flex container */
+margin-left: 20px; /* Optional spacing from edge */
+}
+
+/* If using standard positioning */
+.navbar button {
+    position: absolute;
+    left: 90%;
+    transform: translateY(-50%);
+    top: 30%;
+  }
+  
+  /* General button styling */
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <body>
+        <section class=" top-txt">
+            <div class="head container ">
+                <div class="head-txt ">
+                    <p>Free shipping, 30-day return or refund guarantee.</p>
+                </div>
+              
+            </div>
+        </section>
+        <nav class="navbar">
+            <div class="navbar-container" >
+                <input type="checkbox" name="" id="checkbox">
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <ul class="menu-items">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#news">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="logo">
+                   <img src="./images/1000120926 (1).png" alt="img" width="100px" height="50px" margin-right="50px">
+        </nav>
+        <section id="home">
+            <div class="home_page ">
+                <div class="home_img ">
+                    <img src="https://i.postimg.cc/t403yfn9/home2.jpg" alt="img ">
+                </div>
+                <div class="home_txt ">
+                    <p class="collection">TRENDY COLLECTION</p>
+                    <h2>FALL - WINTER<br>Collection 2025</h2>
+                    <div class="home_label ">
+                        <p>A specialist label creating luxury essentials. Ethically crafted<br>with an unwavering commitment to exceptional quality.</p>
+                    </div>
+                    <button><a href="shop.html">SHOP NOW</a><i class='bx bx-right-arrow-alt'></i></button>
+                    <div class="home_social_icons">
+                        <a href="#"><i class='bx bxl-facebook'></i></a>
+                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="#"><i class='bx bxl-pinterest'></i></a>
+                        <a href="#"><i class='bx bxl-instagram'></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="collection">
+            <div class="collections container">
+                <div class="content">
+                    <img src="https://i.postimg.cc/Xqmwr12c/clothing.webp" alt="img" />
+                    <div class="img-content">
+                        <p>Clothing Collections</p>
+                        <button><a href="shop.html">SHOP NOW</a></button>
+                    </div>
+                </div>
+                <div class="content2">
+                    <img src="https://i.postimg.cc/8CmBZH5N/shoes.webp" alt="img" />
+                    <div class="img-content2">
+                        <p>Shoes Spring</p>
+                        <button><a href="shop.html">SHOP NOW</a></button>
+                    </div>
+                </div>
+                <div class="content3">
+                    <img src="https://i.postimg.cc/MHv7KJYp/access.webp" alt="img" />
+                    <div class="img-content3">
+                        <p>Accessories</p>
+                        <button><a href="shop.html">SHOP NOW</a></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="sellers">
+            <div class="seller container">
+                <h2>Top Sales</h2>
+                <div class="best-seller">
+                    <div class="best-p1">
+                        <img src="data:image/jpeg;base64,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" alt="img">
+                            <div class="best-p1-txt">
+                           
+                             <div class="name-of-p">
+                                <p>Casual Shoes</p>
+                            </div>
+                        
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                        
+                            <div class="price">
+                                &dollar;37.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle red'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                    <i class='bx bxs-circle white'></i>
+                                </div>
+                            </div>
+                           
+                            <div class="buy-now">
+                                <button><a href="https://codepen.io/sanketbodke/full/mdprZOq">Buy  Now</a></button>
+                                <button onclick="addToCart(1, 'casual shoes', 37.24)">Add to Cart</button>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    
+                    <div class="best-p1">
+                        <img src="data:image/jpeg;base64,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" alt="img">
+                        <div class="best-p1-txt">
+                          
+                            <div class="name-of-p">
+                                <p>Wollen Jacket</p>
+                            </div>
+                          
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                          
+                            <div class="price">
+                                &dollar;17.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle green'></i>
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle brown'></i>
+                                </div>
+                            </div>
+                          
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(2, 'Wollen Jacket', 17.24)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="best-p1">
+                        <img src="https://i.postimg.cc/j2FhzSjf/bs2.png" alt="img">
+                        <div class="best-p1-txt">
+                   
+                            <div class="name-of-p">
+                                <p>Double pocket Shirt</p>
+                            </div>
+                        
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                        
+                            <div class="price">
+                                &dollar;27.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle brown'></i>
+                                    <i class='bx bxs-circle green'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                </div>
+                            </div>
+                         
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(3, 'Double Pocket Shirt', 27.24)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="best-p1">
+                        <img src="https://i.postimg.cc/QtjSDzPF/bs3.png" alt="img">
+                        <div class="best-p1-txt">
+                          
+                            <div class="name-of-p">
+                                <p>Casual Shoes</p>
+                            </div>
+                          
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                          
+                            <div class="price">
+                                &dollar;43.67
+                                <div class="colors">
+                                    <i class='bx bxs-circle red'></i>
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                </div>
+                            </div>
+                          
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(4, 'Casual Shoes', 43.67)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="seller container">
+                <h2>New Arrivals</h2>
+                <div class="best-seller">
+                    <div class="best-p1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR49-BDo-7znvlpYiS60pVwh3zj85AzG0JGiA&s" alt="img">
+        
+                        <div class="best-p1-txt">
+                            <div class="name-of-p">
+                                <p>Printed T-Shirt</p>
+                            </div>
+           
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+           
+                            <div class="price">
+                                &dollar;10.23
+                                <div class="colors">
+                                    <i class='bx bxs-circle blank'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                    <i class='bx bxs-circle brown'></i>
+                                </div>
+                            </div>
+                   
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(5, 'Printed T-Shirt', 10.23)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="best-p1">
+                        <img src="https://5.imimg.com/data5/QG/HP/MY-27264919/college-bag-500x500.jpg" alt="img">
+                        <div class="best-p1-txt">
+                          
+                            <div class="name-of-p">
+                                <p>College Bag</p>
+                            </div>
+                          
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+                          
+                            <div class="price">
+                                &dollar;9.28
+                                <div class="colors">
+                                    <i class='bx bxs-circle brown'></i>
+                                    <i class='bx bxs-circle red'></i>
+                                    <i class='bx bxs-circle green'></i>
+                                </div>
+                            </div>
+                          
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(6, 'College Bag', 9.28)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="best-p1">
+                        <img src="data:image/jpeg;base64,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" alt="img">
+                            <div class="best-p1-txt">
+
+                           <div class="name-of-p">
+                             <p>Rabon Sunglass</p>
+                            </div>
+                            
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            
+                            <div class="price">
+                                &dollar;7.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle blank'></i>
+                                    <i class='bx bxs-circle blank'></i>
+                                </div>
+                            </div>
+                            
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button> 
+                                <button onclick="addToCart(7, 'Rabon Sunglass', 7.24)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="best-p1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR84XqGbs0tcqib4XG-U7h4W7y-XFPx9V43sjzX8qgJYPKr7FD31emppkviFjJcS-B3s7c&usqp=CAU" alt="img">
+                       
+                        <div class="best-p1-txt">
+                            <div class="name-of-p">
+                                <p>Casual Shoes</p>
+                            </div>
+                           
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                           
+                            <div class="price">
+                                &dollar;43.67
+                                <div class="colors">
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle red'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                </div>
+                            </div>
+                           
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(8, 'Casual Shoes', 43.67)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="seller container">
+                <h2>Hot Sales</h2>
+                <div class="best-seller">
+                    <div class="best-p1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS12yJhuXN9Zydm9ZdtnqQajBPjVXxKOau_BQ&s" alt="img">
+
+                        <div class="best-p1-txt">
+                          
+                            <div class="name-of-p">
+                                <p>Printed Shirt</p>
+                            </div>
+                          
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                          
+                            <div class="price">
+                                &dollar;37.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle black'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                </div>
+                            </div>
+                          
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(9, 'Printed Shirt', 37.24)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="best-p1">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2024/2/387803490/MA/YV/QU/62444500/puff-print-hd-t-shirt.jpg" alt="img">
+                        <div class="best-p1-txt">
+                           
+                            <div class="name-of-p">
+                                <p>Printed T-Shirt</p>
+                            </div>
+                           
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                           
+                            <div class="price">
+                                &dollar;10.23
+                                <div class="colors">
+                                    <i class='bx bxs-circle blank'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                    <i class='bx bxs-circle brown'></i>
+                                </div>
+                            </div>
+                           
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(10, 'Printed T-Shirt', 10.23)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="best-p1">
+                        <img src="https://i.postimg.cc/RhVP7YQk/hs1.png" alt="img">
+                        <div class="best-p1-txt">
+                          
+                            <div class="name-of-p">
+                                <p>Casual T-Shirt</p>
+                            </div>
+                          
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                            </div>
+                            
+                            <div class="price">
+                                &dollar;15.24
+                                <div class="colors">
+                                    <i class='bx bxs-circle blank'></i>
+                                    <i class='bx bxs-circle red'></i>
+                                    <i class='bx bxs-circle blue'></i>
+                                </div>
+                            </div>
+                           
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(11, 'Casual T-Shirt', 15.24)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="best-p1">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdM5q_A2nO0H3Q0k-7Z2sZuhc-CbjbI4bEgw&s" alt="img">
+                        <div class="best-p1-txt">
+                    
+                            <div class="name-of-p">
+                                <p>College Bag</p>
+                            </div>
+                    
+                            <div class="rating">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                                <i class='bx bx-star'></i>
+                            </div>
+
+                            <div class="price">
+                                &dollar;9.28
+                                <div class="colors">
+                                    <i class='bx bxs-circle blank'></i>
+                                    <i class='bx bxs-circle grey'></i>
+                                    <i class='bx bxs-circle brown'></i>
+                                </div>
+                            </div>
+                           
+                            <div class="buy-now">
+                                <button><a href="">Buy  Now</a></button>
+                                <button onclick="addToCart(12, 'College Bag', 9.28)">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="news">
+            <div class="news-heading">
+                <p>LATEST NEWS</p>
+                <h2>Fashion New Trends</h2>
+            </div>
+            <div class="l-news container">
+                <div class="l-news1">
+                    <div class="news1-img">
+                        <img src="https://i.postimg.cc/2y6wbZCm/news1.jpg" alt="img">
+                    </div>
+                    <div class="news1-conte">
+                        <div class="date-news1">
+                            <p><i class='bx bxs-calendar'></i> 12 February 2025</p>
+                            <h4>What Curling Irons Are The Best Ones</h4>
+                            <a href="https://www.vogue.com/article/best-curling-irons" target="_blank">read more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-news2">
+                    <div class="news2-img">
+                        <img src="https://i.postimg.cc/9MXPK7RT/news2.jpg" alt="img">
+                    </div>
+                    <div class="news2-conte">
+                        <div class="date-news2">
+                            <p><i class='bx bxs-calendar'></i> 17 March 2025</p>
+                            <h4>The Health Benefits Of Sunglasses</h4>
+                            <a href="https://www.rivieraopticare.com/blog/314864-the-health-benefits-of-wearing-sunglasses_2/" target="_blank">read more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-news3">
+                    <div class="news3-img">
+                        <img src="https://i.postimg.cc/x1KKdRLM/news3.jpg" alt="img">
+                    </div>
+                    <div class="news3-conte">
+                        <div class="date-news3">
+                            <p><i class='bx bxs-calendar'></i> 26 April 2025</p>
+                            <h4>Eternity Bands Do Last Forever</h4>
+                            <a href="https://www.briangavindiamonds.com/news/eternity-bands-symbolize-love-that-lasts-forever/" target="_blank">read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="contact container">
+           
+            <form action="https://formspree.io/f/xzbowpjq" method="POST">
+                <div class="form">
+                    <div class="form-txt">
+                        <h4>INFORMATION</h4>
+                        <h1>Contact Us</h1>
+                        <span>As you might expect of a company that began as a high-end interiors contractor, we pay strict
+                            attention.</span>
+                        <h3>TamilNadu</h3>
+                        <p>195 E South Street T-Nagar,Chennai<br>+91 80-5667-3645</p>
+                        <h3>India</h3>
+                        <p>HW95+C9C, Chennai.<br>537001</p>
+                    </div>
+                    <div class="form-details">
+                        <input type="text" name="name" id="name" placeholder="Name" required>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <textarea name="message" id="message" cols="52" rows="7" placeholder="Message" required></textarea>
+                        <button>SEND MESSAGE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </section>
+        <footer>
+            <div class="footer-container container">
+                <div class="content_1">
+                    <img src="./images/1000120926 (1).png" alt="logo" width="100px" height="50px">
+
+                    <p>The customer is at the heart of our<br>unique business model, which includes<br>design.</p>
+                    <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards">
+                </div>
+                <div class="content_2">
+                    <h4>SHOPPING</h4>
+                    <a href="#sellers">Clothing Store</a>
+                    <a href="#sellers">Trending Shoes</a>
+                    <a href="#sellers">Accessories</a>
+                    <a href="#sellers">Sale</a>
+                </div>
+                <div class="content_3">
+                    <h4>SHOPPING</h4>
+                    <a href="./contact.html">Contact Us</a>
+                    <a href="https://payment-method-sb.netlify.app/" target="_blank">Payment Method</a>
+                    <a href="https://delivery-status-sb.netlify.app/" target="_blank">Delivery</a>
+                    <a href="https://codepen.io/sandeshbodake/full/Jexxrv" target="_blank">Return and Exchange</a>
+                </div>
+                <div class="content_4">
+                    <h4>NEWLETTER</h4>
+                    <p>Be the first to know about new<br>arrivals, look books, sales & promos!</p>
+                    <div class="f-mail">
+                        <input type="email" placeholder="Your Email">
+                        <i class='bx bx-envelope'></i>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="f-design">
+                <div class="f-design-txt container">
+                    <p>Design and Code by code.theKing</code></p>
+                </div>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
+</body>
+</html>
