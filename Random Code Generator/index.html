@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-item input {
+            margin-right: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background-color: #2196F3;
+            margin-top: 10px;
+        }
+        .copy-btn:hover {
+            background-color: #0b7dda;
+        }
+        .history {
+            margin-top: 20px;
+        }
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        .history-item {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .history-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Code Generator</h1>
+        <div class="form-group">
+            <label for="length">Code Length:</label>
+            <input type="number" id="length" min="1" max="100" value="8">
+        </div>
+        <div class="form-group">
+            <label>Character Types:</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="uppercase" checked>
+                    <label for="uppercase">ABC</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="lowercase" checked>
+                    <label for="lowercase">abc</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="numbers" checked>
+                    <label for="numbers">123</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="symbols">
+                    <label for="symbols">@#$</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exclude">Exclude Characters (optional):</label>
+            <input type="text" id="exclude" placeholder="e.g., 0, O, 1, I, l">
+        </div>
+        <div class="form-group">
+            <label for="quantity">Number of Codes to Generate:</label>
+            <input type="number" id="quantity" min="1" max="10" value="1">
+        </div>
+        <button onclick="generateCode()">Generate Code</button>
+        <div id="result" class="result">Your code will appear here</div>
+        <button onclick="copyToClipboard()" class="copy-btn">Copy to Clipboard</button>
+        
+        <div class="history">
+            <h3>History</h3>
+            <div id="history-list" class="history-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const history = [];
+        
+        function generateCode() {
+            const length = parseInt(document.getElementById('length').value);
+            const includeUppercase = document.getElementById('uppercase').checked;
+            const includeLowercase = document.getElementById('lowercase').checked;
+            const includeNumbers = document.getElementById('numbers').checked;
+            const includeSymbols = document.getElementById('symbols').checked;
+            const excludeChars = document.getElementById('exclude').value.split('').map(char => char.trim()).filter(char => char);
+            const quantity = parseInt(document.getElementById('quantity').value);
+            
+            // Validate inputs
+            if (length <= 0 || length > 100) {
+                alert("Code length must be between 1 and 100.");
+                return;
+            }
+            
+            if (quantity <= 0 || quantity > 10) {
+                alert("Number of codes must be between 1 and 10.");
+                return;
+            }
+            
+            if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
+                alert("Please select at least one character type.");
+                return;
+            }
+            
+            // Define character sets
+            let chars = '';
+            if (includeUppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeLowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+            if (includeNumbers) chars += '0123456789';
+            if (includeSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            // Remove excluded characters
+            excludeChars.forEach(char => {
+                chars = chars.replace(new RegExp(char, 'g'), '');
+            });
+            
+            if (chars.length === 0) {
+                alert("After exclusions, no characters are available. Please adjust your settings.");
+                return;
+            }
+            
+            // Generate codes
+            const generatedCodes = [];
+            for (let i = 0; i < quantity; i++) {
+                let code = '';
+                for (let j = 0; j < length; j++) {
+                    const randomIndex = Math.floor(Math.random() * chars.length);
+                    code += chars[randomIndex];
+                }
+                generatedCodes.push(code);
+            }
+            
+            // Display results
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = generatedCodes.join('<br>');
+            
+            // Add to history
+            generatedCodes.forEach(code => {
+                history.unshift(code);
+                if (history.length > 20) history.pop(); // Keep only the last 20 codes
+            });
+            updateHistory();
+        }
+        
+        function copyToClipboard() {
+            const resultDiv = document.getElementById('result');
+            const codes = resultDiv.innerText;
+            
+            if (codes === 'Your code will appear here') {
+                alert("Generate a code first!");
+                return;
+            }
+            
+            navigator.clipboard.writeText(codes).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy. Please select and copy manually.");
+            });
+        }
+        
+        function updateHistory() {
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = '';
+            
+            history.forEach(code => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                item.textContent = code;
+                item.onclick = function() {
+                    document.getElementById('result').innerText = code;
+                };
+                historyList.appendChild(item);
+            });
+        }
+    </script>
+</body>
+</html>
