@@ -1,0 +1,157 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin: 0;
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+}
+
+/* Controls Section */
+.controls {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.controls-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.control-item {
+    flex: 1;
+}
+
+.control-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #34495e;
+    margin-bottom: 5px;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus, select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
+/* Book Grid Section */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.book-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.book-card .book-info {
+    padding: 15px;
+}
+
+.book-card .book-title {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin: 0 0 10px;
+}
+
+.book-card .book-author {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0 0 5px;
+}
+
+.book-card .book-genre {
+    font-size: 0.8rem;
+    color: #3498db;
+    margin: 0;
+}
+
+/* Loading Spinner */
+.loading {
+    text-align: center;
+    padding: 40px;
+}
+
+.spinner {
+    border: 4px solid #f3f3f3;              
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover Effects */
+.control-item:hover .control-label {
+    color: #3498db;
+}
+
+.book-card:hover .book-title {
+    color: #3498db;
+}
+
+.book-card:hover .book-author {
+    color: #34495e;
+}
+
+.book-card:hover .book-genre {
+    color: #2c3e50;
+}

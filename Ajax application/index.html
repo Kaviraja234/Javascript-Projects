@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Book Collection</h1>
+            <p class="subtitle">Browse and discover your next read</p>
+        </header>
+        
+        <section class="controls">
+            <div class="controls-row">
+                <div class="control-item">
+                    <label class="control-label" for="search-input">Search Books</label>
+                    <input type="text" id="search-input" placeholder="Enter title or author...">
+                </div>
+            </div>
+            <div class="controls-row">
+                <div class="control-item">
+                    <label class="control-label" for="genre-filter">Genre</label>
+                    <select id="genre-filter">
+                        <option value="">All Genres</option>
+                    </select>
+                </div>
+                <div class="control-item">
+                    <label class="control-label" for="author-filter">Author</label>
+                    <select id="author-filter">
+                        <option value="">All Authors</option>
+                    </select>
+                </div>
+                <div class="control-item">
+                    <label class="control-label" for="year-filter">Publication Year</label>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+        
+        <section class="book-grid" id="book-grid">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading books...</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="books_data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
