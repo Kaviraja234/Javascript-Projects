@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Quiz Application</title>
+    <style>
+        :root {
+            --primary-color: #FF9933; /* Saffron from Indian flag */
+            --secondary-color: #138808; /* Green from Indian flag */
+            --tertiary-color: #000080; /* Navy blue (approximation of Ashoka Chakra) */
+            --background-color: #f9f9f9;
+            --text-color: #333;
+        }
+        
+       /* Alternative Attractive CSS for Indian Quiz Application */
+:root {
+    --primary-color: #FF9933; /* Saffron from Indian flag */
+    --secondary-color: #138808; /* Green from Indian flag */
+    --tertiary-color: #000080; /* Navy blue (approximation of Ashoka Chakra) */
+    --accent-color: #B83B5E; /* Rich Indian pink/magenta */
+    --gold-color: #D4AF37; /* Indian gold accent */
+    --text-color: #333;
+    --light-color: #F8F8F8;
+    --border-radius: 12px;
+    --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --box-shadow-light: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23138808' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 25px 0;
+    margin-bottom: 35px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 153, 51, 0.2) 0%, rgba(19, 136, 8, 0.2) 100%);
+    border-radius: var(--border-radius);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-color), white, var(--secondary-color));
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+h1 {
+    color: var(--tertiary-color);
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
+}
+
+.description {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.quiz-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.quiz-btn {
+    padding: 15px 28px;
+    background-color: white;
+    color: var(--tertiary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--box-shadow-light);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.quiz-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: all 0.4s ease;
+    z-index: -1;
+    border-radius: 28px;
+}
+
+.quiz-btn:hover {
+    color: white;
+    transform: translateY(-3px);
+}
+
+.quiz-btn:hover::before {
+    width: 100%;
+}
+
+.quiz-btn.active {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: white;
+}
+
+.quiz-btn.active::before {
+    width: 0;
+    background-color: var(--primary-color);
+}
+
+.quiz-container {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative elements */
+.quiz-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FF9933' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.welcome-screen, .quiz-screen, .result-screen {
+    display: none;
+    position: relative;
+}
+
+.welcome-screen.active, .quiz-screen.active, .result-screen.active {
+    display: block;
+}
+
+.welcome-screen {
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.welcome-screen h2 {
+    color: var(--tertiary-color);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.welcome-screen h2::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background: var(--primary-color);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.welcome-screen p {
+    margin-bottom: 35px;
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+.start-btn {
+    padding: 16px 36px;
+    background: linear-gradient(135deg, var(--tertiary-color), #1a237e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 128, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.start-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 128, 0.4);
+}
+
+.start-btn:hover::before {
+    left: 100%;
+}
+
+.quiz-screen h2 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px dashed var(--primary-color);
+}
+
+.question-number {
+    font-size: 1.15rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: rgba(184, 59, 94, 0.1);
+    border-radius: 20px;
+}
+
+.question {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: var(--tertiary-color);
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option {
+    padding: 16px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.option::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255, 153, 51, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.option:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.option:hover::before {
+    width: 100%;
+}
+
+.option.selected {
+    background-color: rgba(0, 0, 128, 0.08);
+    border-color: var(--tertiary-color);
+    font-weight: 500;
+}
+
+.option.correct {
+    background-color: rgba(19, 136, 8, 0.15);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.option.incorrect {
+    background-color: rgba(220, 53, 69, 0.15);
+    border-color: #dc3545;
+    color: #dc3545;
+    font-weight: 600;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.submit-btn, .next-btn {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.submit-btn {
+    background-color: var(--tertiary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 128, 0.25);
+}
+
+.next-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: 0 4px 10px rgba(19, 136, 8, 0.25);
+}
+
+.submit-btn:hover, .next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.submit-btn:disabled, .next-btn:disabled {
+    background-color: #d1d1d1;
+    color: #777;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.result-screen {
+    text-align: center;
+    padding: 40px 30px;
+}
+
+.result-screen h2 {
+    color: var(--secondary-color);
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.result-screen h2::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.score-container {
+    position: relative;
+    margin: 40px 0;
+}
+
+.score {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--tertiary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--tertiary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+}
+
+.score::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 4px solid #f0f0f0;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    box-shadow: 0 0 0 8px rgba(255, 153, 51, 0.1);
+}
+
+.result-message {
+    font-size: 1.4rem;
+    margin-bottom: 35px;
+    color: #444;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
+
+.restart-btn {
+    padding: 15px 32px;
+    background: linear-gradient(135deg, var(--secondary-color), #0c5f06);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(19, 136, 8, 0.3);
+    margin-top: 15px;
+}
+
+.restart-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 7px 18px rgba(19, 136, 8, 0.4);
+}
+
+.feedback {
+    margin-top: 25px;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    line-height: 1.5;
+}
+
+.progress-container {
+    width: 100%;
+    height: 12px;
+    background-color: #eee;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 6px;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+    border-radius: 6px;
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Decorative elements */
+.cultural-decoration {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%23FF9933' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23138808' stroke-width='2'/%3E%3Cpath d='M50,15 L50,85 M15,50 L85,50 M26,26 L74,74 M26,74 L74,26' stroke='%23000080' stroke-width='1'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.cultural-decoration.top-right {
+    top: -20px;
+    right: -20px;
+}
+
+.cultural-decoration.bottom-left {
+    bottom: -20px;
+    left: -20px;
+}
+
+/* Animation for transitions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 0.4s ease-in-out;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .quiz-container {
+        padding: 25px 20px;
+    }
+    
+    .question {
+        font-size: 1.25rem;
+    }
+    
+    .quiz-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Add cultural border with ornate pattern */
+.cultural-border {
+    position: relative;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.cultural-border::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%23FF9933' fill-opacity='0.1'%3E%3Cpath d='M0 0h20v20H0V0zm10 10C4.477 10 0 14.477 0 20s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10z'/%3E%3C/g%3E%3C/svg%3E");
+    border: 8px solid transparent;
+    border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23138808' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") 20 stretch;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Add subtle flower pattern background */
+.pattern-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%23FF9933' fill-opacity='0.05'%3E%3Cpath d='M20 20c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0-20C14.477 0 10 4.477 10 10s4.477 10 10 10 10-4.477 10-10S25.523 0 20 0zm0 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm0 24c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z'/%3E%3C/g%3E%3C/svg%3E");
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* Add decorative flourishes to certain elements */
+.decorative-element {
+    position: relative;
+}
+
+.decorative-element::after {
+    content: "✦";
+    position: absolute;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    opacity: 0.5;
+}
+
+/* Add pulsing animation for correct answers */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(19, 136, 8, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(19, 136, 8, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(19, 136, 8, 0);
+    }
+}
+
+.option.correct {
+    animation: pulse 1.5s infinite;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="cultural-border">
+            <h1>🇮🇳 Indian Web Development Quiz 🇮🇳</h1>
+            <p class="description">Test your knowledge of HTML, CSS, and JavaScript with these India-themed quizzes!</p>
+        </header>
+        
+        <div class="quiz-selection">
+            <button class="quiz-btn active" data-quiz="html">HTML Quiz</button>
+            <button class="quiz-btn" data-quiz="css">CSS Quiz</button>
+            <button class="quiz-btn" data-quiz="js">JavaScript Quiz</button>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="welcome-screen active">
+                <h2>Welcome to the Indian Web Development Quiz!</h2>
+                <p>This quiz contains questions related to HTML with an Indian context. Test your knowledge and see how well you score!</p>
+                <button class="start-btn">Start Quiz</button>
+            </div>
+            
+            <div class="quiz-screen">
+                <div class="progress-container">
+                    <div class="progress-bar"></div>
+                </div>
+                <h2 id="quiz-title">HTML Quiz</h2>
+                <p class="question-number">Question <span id="current-question">1</span> of <span id="total-questions">10</span></p>
+                <p class="question" id="question-text">Loading question...</p>
+                <div class="options" id="options-container">
+                    <!-- Options will be loaded here dynamically -->
+                </div>
+                <div class="feedback" id="feedback-text" style="display: none;"></div>
+                <div class="quiz-footer">
+                    <button class="submit-btn" id="submit-btn">Submit Answer</button>
+                    <button class="next-btn" id="next-btn" disabled>Next Question</button>
+                </div>
+            </div>
+            
+            <div class="result-screen">
+                <h2>Quiz Results</h2>
+                <p>You have completed the quiz!</p>
+                <div class="score">
+                    <span id="score-value">0</span>/<span id="total-points">0</span>
+                </div>
+                <p class="result-message" id="result-message">Loading your result...</p>
+                <button class="restart-btn" id="restart-btn">Take Another Quiz</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Quiz data with India-themed questions
+        const quizData = {
+            html: [
+                {
+                    question: "Which HTML tag would you use to display the Indian national emblem as a logo on a government website?",
+                    options: ["<picture>", "<logo>", "<img>", "<symbol>"],
+                    answer: 2,
+                    explanation: "The <img> tag is used to display images including logos. For the Indian national emblem, you would use <img src=\"national-emblem.png\" alt=\"Indian National Emblem\">"
+                },
+                {
+                    question: "Which HTML element would be most appropriate for the title 'Incredible India' on a tourism website?",
+                    options: ["<h1>", "<title>", "<header>", "<strong>"],
+                    answer: 0,
+                    explanation: "The <h1> tag represents the main heading of a page, making it the most appropriate choice for the main title of a tourism website."
+                },
+                {
+                    question: "To create a form for booking tickets to the Taj Mahal, which HTML element would you use to collect the visitor's date of visit?",
+                    options: ["<input type=\"text\">", "<input type=\"date\">", "<input type=\"time\">", "<textarea>"],
+                    answer: 1,
+                    explanation: "The <input type=\"date\"> element creates a date picker, making it the ideal choice for selecting a visit date."
+                },
+                {
+                    question: "Which HTML element is best for displaying the lyrics of the Indian national anthem 'Jana Gana Mana'?",
+                    options: ["<p>", "<pre>", "<blockquote>", "<article>"],
+                    answer: 1,
+                    explanation: "The <pre> (preformatted text) element preserves whitespace and line breaks, making it ideal for displaying lyrics with their proper formatting."
+                },
+                {
+                    question: "When creating a webpage about Indian cuisines, which HTML5 semantic element should contain the main navigation menu?",
+                    options: ["<section>", "<nav>", "<aside>", "<div>"],
+                    answer: 1,
+                    explanation: "The <nav> element is specifically designed to contain the main navigation links of a website."
+                },
+                {
+                    question: "Which attribute should you add to an <img> element displaying the Indian flag to improve accessibility?",
+                    options: ["title", "alt", "caption", "description"],
+                    answer: 1,
+                    explanation: "The 'alt' attribute provides alternative text for screen readers, improving accessibility for visually impaired users."
+                },
+                {
+                    question: "To create a table showing different Indian states and their capitals, which HTML element pair is required?",
+                    options: ["<tr> and <td>", "<table> and <tr>", "<th> and <td>", "<thead> and <tbody>"],
+                    answer: 0,
+                    explanation: "The <tr> element creates table rows, and <td> creates table cells within those rows, which are essential components for displaying tabular data."
+                },
+                {
+                    question: "Which HTML5 element would be most appropriate for embedding an interactive map of India?",
+                    options: ["<canvas>", "<svg>", "<iframe>", "<map>"],
+                    answer: 2,
+                    explanation: "The <iframe> element is commonly used to embed external content like Google Maps or other interactive maps."
+                },
+                {
+                    question: "For a website about Indian classical music, which HTML5 element would you use to embed an audio clip of a sitar performance?",
+                    options: ["<media>", "<audio>", "<sound>", "<music>"],
+                    answer: 1,
+                    explanation: "The <audio> element is specifically designed for embedding sound content in HTML5 documents."
+                },
+                {
+                    question: "When creating a list of Indian festivals in chronological order, which HTML element would be most appropriate?",
+                    options: ["<ul>", "<ol>", "<dl>", "<menu>"],
+                    answer: 1,
+                    explanation: "The <ol> (ordered list) element is appropriate for lists where the order matters, such as chronological listings."
+                }
+            ],
+            css: [
+                {
+                    question: "Which CSS color values would you use to represent the Indian flag's saffron color?",
+                    options: ["#FF9933", "#FF0000", "#FFA500", "#FF8C00"],
+                    answer: 0,
+                    explanation: "#FF9933 is the hexadecimal color code that closely represents the saffron color in the Indian flag."
+                },
+                {
+                    question: "To style a website with Indian traditional patterns, which CSS property would you use to add a repeating border pattern?",
+                    options: ["background-image", "border-image", "border-pattern", "decoration-image"],
+                    answer: 1,
+                    explanation: "The border-image property allows you to specify an image to be used as the border around an element."
+                },
+                {
+                    question: "Which CSS layout method would be most efficient for creating a grid of photos showing different Indian monuments?",
+                    options: ["Flexbox", "Grid", "Float", "Positioned"],
+                    answer: 1,
+                    explanation: "CSS Grid is designed for two-dimensional layouts and is ideal for photo galleries or grids of items."
+                },
+                {
+                    question: "To create a responsive design for a website about Indian tourism, which CSS feature is essential?",
+                    options: ["Variables", "Media queries", "Animations", "Transforms"],
+                    answer: 1,
+                    explanation: "Media queries allow styles to be applied based on device characteristics, making them essential for responsive design."
+                },
+                {
+                    question: "Which CSS property would you use to add the Ashoka Chakra (wheel) as a background to a header?",
+                    options: ["background-image", "background-attachment", "background-position", "background-origin"],
+                    answer: 0,
+                    explanation: "The background-image property is used to set one or more background images for an element."
+                },
+                {
+                    question: "In a website for an Indian film festival, which CSS property would create a smooth transition when hovering over movie posters?",
+                    options: ["transition", "animation", "transform", "filter"],
+                    answer: 0,
+                    explanation: "The transition property allows smooth changes from one property value to another over a specified duration."
+                },
+                {
+                    question: "To style text in Devanagari script (used for Hindi), which CSS property should be adjusted to ensure proper rendering?",
+                    options: ["font-language", "text-rendering", "font-family", "text-align"],
+                    answer: 2,
+                    explanation: "The font-family property specifies the font for text, and should include fonts that support Devanagari script."
+                },
+                {
+                    question: "Which CSS selector would target all links to Indian government websites ending with '.gov.in'?",
+                    options: ["a[href$='.gov.in']", "a[href^='.gov.in']", "a[href*='.gov.in']", "a:contains('.gov.in')"],
+                    answer: 0,
+                    explanation: "The attribute selector with $ matches elements whose attribute value ends with the specified string."
+                },
+                {
+                    question: "In a website showcasing Indian textiles, which CSS property would add a shadow effect to product images?",
+                    options: ["image-shadow", "shadow-effect", "box-shadow", "drop-shadow"],
+                    answer: 2,
+                    explanation: "The box-shadow property adds shadow effects around an element's frame, which would enhance product images."
+                },
+                {
+                    question: "Which CSS unit would be most appropriate for creating scalable layouts for a website about Indian architecture?",
+                    options: ["px", "em", "vh/vw", "cm"],
+                    answer: 2,
+                    explanation: "Viewport units (vh/vw) are relative to the viewport size, making them ideal for responsive, scalable layouts."
+                }
+            ],
+            js: [
+                {
+                    question: "Which JavaScript method would you use to format currency values when displaying prices of Indian handicrafts?",
+                    options: ["Number.toCurrency()", "Number.toLocaleString()", "Number.toRupees()", "Number.formatCurrency()"],
+                    answer: 1,
+                    explanation: "The toLocaleString() method can format numbers according to locale-specific conventions, including currency."
+                },
+                {
+                    question: "To validate an Indian mobile number in a form, which JavaScript regular expression pattern would be most appropriate?",
+                    options: ["/^\\d{10}$/", "/^\\+91\\d{10}$/", "/^[6-9]\\d{9}$/", "/^00\\d{12}$/"],
+                    answer: 2,
+                    explanation: "Indian mobile numbers typically start with digits 6-9 and are 10 digits long, making /^[6-9]\\d{9}$/ the most appropriate pattern."
+                },
+                {
+                    question: "Which JavaScript API would you use to get a user's location when building a website to find nearby Indian restaurants?",
+                    options: ["Location API", "Navigator API", "Geolocation API", "Maps API"],
+                    answer: 2,
+                    explanation: "The Geolocation API is used to retrieve the user's geographical location information."
+                },
+                {
+                    question: "In a quiz app about Indian history, which JavaScript method would you use to randomize the order of questions?",
+                    options: ["Array.shuffle()", "Array.random()", "Array.sort() with a randomizing function", "Math.randomize()"],
+                    answer: 2,
+                    explanation: "Array.sort() with a custom comparison function using Math.random() can be used to randomize array elements."
+                },
+                {
+                    question: "To create a countdown timer for an Indian festival celebration, which JavaScript timing function would you use?",
+                    options: ["setTimeout()", "setInterval()", "requestAnimationFrame()", "createTimer()"],
+                    answer: 1,
+                    explanation: "setInterval() repeatedly calls a function with a fixed time delay between each call, making it suitable for countdown timers."
+                },
+                {
+                    question: "Which JavaScript event would trigger a function when a user selects a date from a calendar for booking an Indian classical dance performance?",
+                    options: ["onSelect", "onChange", "onClick", "onInput"],
+                    answer: 1,
+                    explanation: "The onChange event fires when the value of an input element changes, such as when selecting a date from a calendar."
+                },
+                {
+                    question: "In a website for learning Indian languages, which JavaScript method would convert a string of Hindi text to uppercase?",
+                    options: ["string.upperCase()", "string.toLocaleUpperCase()", "string.toUpperCase()", "string.convertCase('upper')"],
+                    answer: 1,
+                    explanation: "toLocaleUpperCase() converts a string to uppercase according to language-specific case mappings, which is important for non-English languages."
+                },
+                {
+                    question: "To store a user's preferences for an Indian recipe website in the browser, which JavaScript API would you use?",
+                    options: ["Web Storage API", "Cookie API", "Preferences API", "Cache API"],
+                    answer: 0,
+                    explanation: "The Web Storage API (localStorage and sessionStorage) allows web applications to store data locally within the user's browser."
+                },
+                {
+                    question: "Which JavaScript method would you use to format dates according to the Indian calendar system?",
+                    options: ["Date.toLocaleDateString()", "Date.toIndianString()", "Date.format('indian')", "Date.toCalendarString()"],
+                    answer: 0,
+                    explanation: "toLocaleDateString() can format dates according to locale-specific conventions, including different calendar systems."
+                },
+                {
+                    question: "In a website about Indian cricket, which JavaScript approach would be best to fetch live match scores from an API?",
+                    options: ["AJAX request", "Direct DOM manipulation", "Event listeners", "Cookies"],
+                    answer: 0,
+                    explanation: "AJAX (Asynchronous JavaScript and XML) requests allow you to fetch data from servers without page reloads, ideal for live updates."
+                }
+            ]
+        };
+        
+        // App state
+        let currentQuiz = 'html';
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+        let selectedOption = null;
+        
+        // DOM elements
+        const welcomeScreen = document.querySelector('.welcome-screen');
+        const quizScreen = document.querySelector('.quiz-screen');
+        const resultScreen = document.querySelector('.result-screen');
+        const quizButtons = document.querySelectorAll('.quiz-btn');
+        const startButton = document.querySelector('.start-btn');
+        const submitButton = document.getElementById('submit-btn');
+        const nextButton = document.getElementById('next-btn');
+        const restartButton = document.getElementById('restart-btn');
+        const quizTitle = document.getElementById('quiz-title');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const currentQuestionElement = document.getElementById('current-question');
+        const totalQuestionsElement = document.getElementById('total-questions');
+        const scoreValue = document.getElementById('score-value');
+        const totalPoints = document.getElementById('total-points');
+        const resultMessage = document.getElementById('result-message');
+        const feedbackText = document.getElementById('feedback-text');
+        const progressBar = document.querySelector('.progress-bar');
+        
+        // Initialize quiz
+        function initQuiz() {
+            // Set quiz info
+            currentQuestion = 0;
+            score = 0;
+            answered = false;
+            selectedOption = null;
+            
+            // Update UI
+            quizTitle.textContent = `${currentQuiz.toUpperCase()} Quiz`;
+            totalQuestionsElement.textContent = quizData[currentQuiz].length;
+            totalPoints.textContent = quizData[currentQuiz].length;
+            
+            // Load first question
+            loadQuestion();
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+        
+        // Load question
+        function loadQuestion() {
+            // Get current question data
+            const question = quizData[currentQuiz][currentQuestion];
+            
+            // Reset state
+            answered = false;
+            selectedOption = null;
+            submitButton.disabled = true;
+            nextButton.disabled = true;
+            
+            // Update question number
+            currentQuestionElement.textContent = currentQuestion + 1;
+            
+            // Set question text
+            questionText.textContent = question.question;
+            
+            // Clear options
+            optionsContainer.innerHTML = '';
+            
+            // Add options
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.dataset.index = index;
+                
+                // Add click event
+                optionElement.addEventListener('click', () => {
+                    // Clear previous selections
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Select this option
+                    optionElement.classList.add('selected');
+                    selectedOption = index;
+                    
+                    // Enable submit button
+                    submitButton.disabled = false;
+                });
+                
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Hide feedback
+            feedbackText.style.display = 'none';
+            
+            // Update progress bar
+            updateProgressBar();
+        }
+        
+        // Check answer
+        function checkAnswer() {
+            if (selectedOption === null) return;
+            
+            // Get correct answer
+            const correctAnswer = quizData[currentQuiz][currentQuestion].answer;
+            
+            // Get selected option element
+            const options = document.querySelectorAll('.option');
+            
+            // Mark correct and incorrect
+            options.forEach((option, index) => {
+                if (index === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (index === selectedOption) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Update score
+            if (selectedOption === correctAnswer) {
+                score++;
+            }
+            
+            // Show feedback
+            feedbackText.textContent = quizData[currentQuiz][currentQuestion].explanation;
+            feedbackText.style.display = 'block';
+            feedbackText.style.backgroundColor = selectedOption === correctAnswer ? '#d4ffda' : '#ffd4d4';
+            feedbackText.style.border = `1px solid ${selectedOption === correctAnswer ? '#28a745' : '#dc3545'}`;
+            
+            // Update state
+            answered = true;
+            submitButton.disabled = true;
+            nextButton.disabled = false;
+        }
+        
+        // Next question
+        function nextQuestion() {
+            // Check if last question
+            if (currentQuestion < quizData[currentQuiz].length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                // Show results
+                showResults();
+            }
+        }
+        
+        // Show results
+        function showResults() {
+            // Update score
+            scoreValue.textContent = score;
+            
+            // Calculate percentage
+            const percentage = (score / quizData[currentQuiz].length) * 100;
+            
+            // Set result message
+            if (percentage >= 90) {
+                resultMessage.textContent = "Excellent! You're a true web development expert with Indian context knowledge!";
+            } else if (percentage >= 70) {
+                resultMessage.textContent = "Great job! You have a solid understanding of web development with Indian themes!";
+            } else if (percentage >= 50) {
+                resultMessage.textContent = "Good effort! Keep learning about web development and Indian contexts!";
+            } else {
+                resultMessage.textContent = "You might need more practice. Keep learning the basics of web development!";
+            }
+            
+            // Show result screen
+            quizScreen.classList.remove('active');
+            resultScreen.classList.add('active', 'fade-in');
+        }
+        
+        // Update progress bar
+        function updateProgressBar() {
+            const progress = ((currentQuestion) / quizData[currentQuiz].length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Event listeners
+        quizButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                quizButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+                
+                // Update current quiz
+                currentQuiz = button.dataset.quiz;
+                
+                // Update welcome text
+                const welcomeTitle = document.querySelector('.welcome-screen h2');
+                const welcomeText = document.querySelector('.welcome-screen p');
+                
+                switch(currentQuiz) {
+                    case 'html':
+                        welcomeTitle.textContent = "Welcome to the Indian HTML Quiz!";
+                        welcomeText.textContent = "This quiz contains questions related to HTML with an Indian context. Test your knowledge and see how well you score!";
+                        break;
+                    case 'css':
+                        welcomeTitle.textContent = "Welcome to the Indian CSS Quiz!";
+                        welcomeText.textContent = "This quiz tests your CSS knowledge with questions set in an Indian context. Show off your styling skills!";
+                        break;
+                    case 'js':
+                        welcomeTitle.textContent = "Welcome to the Indian JavaScript Quiz!";
+                        welcomeText.textContent = "Challenge yourself with these JavaScript questions featuring Indian themes and contexts. Let's see your coding knowledge!";
+                        break;
+                }
+            });
+        });
+        
+        startButton.addEventListener('click', () => {
+            welcomeScreen.classList.remove('active');
+            quizScreen.classList.add('active', 'fade-in');
+            initQuiz();
+        });
+        
+        submitButton.addEventListener('click', checkAnswer);
+        
+        nextButton.addEventListener('click', nextQuestion);
+        
+        restartButton.addEventListener('click', () => {
+            resultScreen.classList.remove('active');
+            welcomeScreen.classList.add('active', 'fade-in');
+        });
+    </script>
