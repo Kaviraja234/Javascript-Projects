@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractive Stopwatch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f4c75, #3282b8, #1b262c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .stopwatch-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .time-display {
+            font-size: 4rem;
+            font-weight: 300;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-start {
+            background: rgba(72, 219, 133, 0.3);
+        }
+        
+        .btn-stop {
+            background: rgba(235, 77, 75, 0.3);
+        }
+        
+        .btn-reset {
+            background: rgba(106, 137, 204, 0.3);
+        }
+        
+        .laps-container {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .laps-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .laps-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .laps-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .lap-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        .lap-item:last-child {
+            border-bottom: none;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stopwatch-container">
+        <h1 class="title">Stopwatch</h1>
+        <div class="time-display" id="display">00:00:00.00</div>
+        <div class="controls">
+            <button class="btn btn-start" id="startBtn">Start</button>
+            <button class="btn btn-stop" id="stopBtn">Stop</button>
+            <button class="btn btn-reset" id="resetBtn">Reset</button>
+            <button class="btn" id="lapBtn">Lap</button>
+        </div>
+        <div class="laps-container hidden" id="lapsContainer">
+            <!-- Lap times will be inserted here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const display = document.getElementById('display');
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const lapBtn = document.getElementById('lapBtn');
+            const lapsContainer = document.getElementById('lapsContainer');
+            
+            let startTime;
+            let elapsedTime = 0;
+            let timerInterval;
+            let running = false;
+            let lapCount = 0;
+            
+            function formatTime(milliseconds) {
+                let totalMs = milliseconds;
+                
+                const ms = totalMs % 1000;
+                totalMs = (totalMs - ms) / 1000;
+                
+                const secs = totalMs % 60;
+                totalMs = (totalMs - secs) / 60;
+                
+                const mins = totalMs % 60;
+                const hrs = (totalMs - mins) / 60;
+                
+                return String(hrs).padStart(2, '0') + ':' + 
+                       String(mins).padStart(2, '0') + ':' + 
+                       String(secs).padStart(2, '0') + '.' + 
+                       String(Math.floor(ms / 10)).padStart(2, '0');
+            }
+            
+            function updateDisplay() {
+                const currentTime = running ? Date.now() - startTime + elapsedTime : elapsedTime;
+                display.textContent = formatTime(currentTime);
+            }
+            
+            function startTimer() {
+                if (!running) {
+                    startTime = Date.now();
+                    running = true;
+                    
+                    timerInterval = setInterval(updateDisplay, 10);
+                    startBtn.textContent = 'Pause';
+                }
+                else {
+                    clearInterval(timerInterval);
+                    elapsedTime += Date.now() - startTime;
+                    running = false;
+                    startBtn.textContent = 'Resume';
+                }
+            }
+            
+            function stopTimer() {
+                if (running) {
+                    clearInterval(timerInterval);
+                    elapsedTime += Date.now() - startTime;
+                    running = false;
+                    startBtn.textContent = 'Start';
+                }
+            }
+            
+            function resetTimer() {
+                clearInterval(timerInterval);
+                running = false;
+                elapsedTime = 0;
+                lapCount = 0;
+                startBtn.textContent = 'Start';
+                display.textContent = '00:00:00.00';
+                lapsContainer.innerHTML = '';
+                lapsContainer.classList.add('hidden');
+            }
+            
+            function recordLap() {
+                if (running || elapsedTime > 0) {
+                    lapCount++;
+                    const currentTime = running ? Date.now() - startTime + elapsedTime : elapsedTime;
+                    
+                    const lapItem = document.createElement('div');
+                    lapItem.classList.add('lap-item');
+                    lapItem.innerHTML = `
+                        <span>Lap ${lapCount}</span>
+                        <span>${formatTime(currentTime)}</span>
+                    `;
+                    
+                    lapsContainer.classList.remove('hidden');
+                    lapsContainer.insertBefore(lapItem, lapsContainer.firstChild);
+                }
+            }
+            
+            startBtn.addEventListener('click', startTimer);
+            stopBtn.addEventListener('click', stopTimer);
+            resetBtn.addEventListener('click', resetTimer);
+            lapBtn.addEventListener('click', recordLap);
+        });
+    </script>
+</body>
+</html>
