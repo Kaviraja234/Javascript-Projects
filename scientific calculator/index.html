@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="calculator">
+        <div class="display-container">
+            <div class="history" id="history"></div>
+            <input type="text" id="display" readonly>
+        </div>
+        <div class="buttons">
+            <!-- First row -->
+            <button class="function" onclick="toggleDegRad()">Deg</button>
+            <button class="function" onclick="calculateFactorial()">x!</button>
+            <button class="function" onclick="insert('(')">(</button>
+            <button class="function" onclick="insert(')')">)</button>
+            <button class="operator" onclick="percentage()">%</button>
+            <button class="clear" onclick="clearDisplay()">AC</button>
+
+            <!-- Second row -->
+            <button class="function" onclick="insert('Math.pow(10)')">10<sup>x</sup></button>
+            <button class="function" onclick="calculateSin()">sin</button>
+            <button class="function" onclick="calculateLn()">ln</button>
+            <button class="number" onclick="insert('7')">7</button>
+            <button class="number" onclick="insert('8')">8</button>
+            <button class="number" onclick="insert('9')">9</button>
+            <button class="operator" onclick="insert('/')">/</button>
+
+            <!-- Third row -->
+            <button class="function" onclick="calculateLog()">log</button>
+            <button class="function" onclick="calculateCos()">cos</button>
+            <button class="function" onclick="calculateLog2()">log<sub>2</sub></button>
+            <button class="number" onclick="insert('4')">4</button>
+            <button class="number" onclick="insert('5')">5</button>
+            <button class="number" onclick="insert('6')">6</button>
+            <button class="operator" onclick="insert('*')">×</button>
+
+            <!-- Fourth row -->
+            <button class="function" onclick="insert('Math.pow(')">x<sup>y</sup></button>
+            <button class="function" onclick="calculateTan()">tan</button>
+            <button class="function" onclick="calculateSqrt()">√</button>
+            <button class="number" onclick="insert('1')">1</button>
+            <button class="number" onclick="insert('2')">2</button>
+            <button class="number" onclick="insert('3')">3</button>
+            <button class="operator" onclick="insert('-')">−</button>
+
+            <!-- Fifth row -->
+            <button class="function" onclick="insert('Math.E')">e</button>
+            <button class="function" onclick="backspace()">⌫</button>
+            <button class="function" onclick="insert('Math.PI')">π</button>
+            <button class="number" onclick="insert('0')">0</button>
+            <button class="number" onclick="insert('.')">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+            <button class="operator" onclick="insert('+')">+</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
